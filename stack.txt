@@ -1,0 +1,42 @@
+#include<stdio.h>
+#define stack_size 100
+void push(int stack[],int*);
+void pop(int stack[],int*);
+int main()
+{
+    int stack[stack_size],ch,top=-1;
+    
+    
+}
+
+void push(int stack[stack_size],int*top)
+{
+int item;
+if (*top==stack_size)
+{
+printf("stack overflow\n");
+
+}
+else { printf("enter the element\n");
+scanf("%d",&item);
+stack[++(*top)]=item;
+printf("%d is pushed\n",item);
+
+
+}
+}
+void pop(int stack[stack_size],int *top)
+{
+int item;
+if (*top==-1)
+{
+printf("stack underflow\n");
+
+}
+else{
+item= stack[*top];
+(*top)--;
+printf("%d is popped\n",item);
+}
+}
+
