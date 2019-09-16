@@ -1,69 +1,54 @@
 #include<stdio.h>
-#define QSIZE 15
-
-void enqueue(int *,int *);
-void dequeue(int *,int *,int *);
-void display(int *, int *, int *);
-
-int main()
+#include<stdlib.h>
+#define n 5
+void main()
 {
-	int q[QSIZE],r=-1,f=0;
-	int choice2;
-	char choice1='y';
-	while(choice1=='y'||choice1=='Y')
-	{
-		printf("\n Enter choice of operation on queue: 1.enqueue 2.dequeue 3.display:\n");
-		scanf("%d",&choice2);
-		if(choice2==1)
-		{
-			enqueue(q,&r);
-			display(q,&f,&r);
-		}
-		else if(choice2==2)
-		{
-			dequeue(q,&f,&r);
-			display(q,&f,&r);
-		}
-		else if(choice2==3)
-		{
-			display(q,&f,&r);
-		}
-		else
-		printf("\n Wrong input");
-		printf("\n WANT TO CONTINUE? yes/no:enter y for yes and n for no:\t");
-		fflush(stdin);
-		scanf("%s",&choice1);
-	}
+    int queue[n],ch,front=0,rear=0,i,x=n;
+    printf("Queue using Array");
+    printf("\n1.Insertion \n2.Deletion \n3.Display \n4.Exit\n");
+    while(1)
+    {
+        printf("\nEnter the Choice:");
+        scanf("%d",&ch);
+        switch(ch)
+        {
+        case 1:
+            if(rear==x)
+                printf("\n Queue is Full");
+            else
+            {
+                printf("\n Enter element to be added :");
+                scanf("%d",&queue[rear++]);
+            }
+            break;
+        case 2:
+            if(front==rear)
+            {
+                printf("\n Queue is empty");
+            }
+            else
+            {
+                printf("\n Deleted Element is %d",queue[front++]);
+                x++;
+            }
+            break;
+        case 3:
+            printf("\n Queue Elements are:\n ");
+            if(front==rear)
+                printf("\n Queue is Empty");
+            else
+            {
+                for(i=front; i<rear; i++)
+                {
+                    printf("%d",queue[i]);
+                    printf("\n");
+                }
+             }
+                break;
+            case 4: exit(0);
+            default:
+                printf("Wrong Choice: please see the options");
+        }
+    }
 }
-void enqueue(int q[],int *r)
-{
-	int item;
-	printf("Enter item \n");
-	scanf("%d",&item);
-	if(*r==QSIZE-1)
-		printf("\n Q is full");
 
-		*r=*r+1;
-		q[*r]=item;
-
-	printf("Value inserted=%d",item);
-}
-void dequeue(int q[],int *f, int *r)
-{
-	if(*f>*r)
-	{
-		printf("Queue is empty\n");
-	}
-	printf("Elememt deleted is %d",q[*f]);
-	(*f)++;
-}
-void display(int q[],int *f, int *r)
-{
-	int i;
-	if(*f>*r)
-	printf("Nothing to display");
-	for(i=*f;i<=*r;i++)
-	{
-		printf("%d",q[i]);
-	}
-}
